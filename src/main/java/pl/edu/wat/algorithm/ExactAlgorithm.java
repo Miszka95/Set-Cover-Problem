@@ -5,7 +5,6 @@ import pl.edu.wat.algorithm.model.Set;
 import pl.edu.wat.algorithm.model.Universe;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,24 +27,18 @@ public class ExactAlgorithm extends SetCoverAlgorithm {
                 }
             }
 
-            if (!result.isEmpty()) {
+            if (result.coversUniverse(universe)) {
                 resultList.add(result);
             }
         }
-        results = findBestResults(filterByUniverseCoverage(resultList));
-    }
-
-    private List<Result> filterByUniverseCoverage(List<Result> results) {
-        return results.stream()
-                .filter(u -> u.coversUniverse(universe))
-                .collect(Collectors.toList());
+        results = findBestResults(resultList);
     }
 
     private List<Result> findBestResults(List<Result> results) {
         int min = results.stream()
-                .min(Comparator.comparingInt(u -> u.getSets().size()))
-                .orElseThrow(() -> new UniverseCoverageException(ERROR_MSG))
-                .getSets().size();
+                .mapToInt(e -> e.getSets().size())
+                .min()
+                .orElseThrow(() -> new UniverseCoverageException(ERROR_MSG));
 
         return results.stream()
                 .filter(u -> u.getSets().size() == min)
