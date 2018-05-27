@@ -1,7 +1,5 @@
 package pl.edu.wat.algorithm.model;
 
-import pl.edu.wat.utils.Configuration;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,8 +10,8 @@ public class Set {
 
     private static Integer AMOUNT = 0;
 
-    public static List<Set> fromConfiguration(Configuration configuration) {
-        return configuration.getSets().stream()
+    public static List<Set> create(List<List<Integer>> subsets) {
+        return subsets.stream()
                 .map(e -> {
                     Set set = new Set();
                     set.setId(++AMOUNT);

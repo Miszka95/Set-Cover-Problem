@@ -23,7 +23,9 @@ public class GreedyAlgorithm extends SetCoverAlgorithm {
         List<Set> availableSets = new ArrayList<>(sets);
 
         do {
-            result.addSet(findMostEffectiveSet(availableSets, result));
+            Set mostEffectiveSet = findMostEffectiveSet(availableSets, result);
+            result.addSet(mostEffectiveSet);
+            availableSets.remove(mostEffectiveSet);
         } while (!result.coversUniverse(universe));
 
         results = Collections.singletonList(result);
