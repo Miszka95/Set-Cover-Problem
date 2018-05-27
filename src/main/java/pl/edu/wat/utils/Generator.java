@@ -9,10 +9,6 @@ public class Generator {
     private static final Integer SIZE_OF_UNIVERSE = 20;
     private static final Integer NUMBER_OF_SETS = 20;
 
-    private static final Integer EASY = 1;
-    private static final Integer MEDIUM = 2;
-    private static final Integer HARD = 3;
-
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     private List<Integer> universe;
@@ -62,7 +58,7 @@ public class Generator {
         return sets;
     }
 
-    public void setLevelOfCoverage(Integer levelOfCoverage) {
+    private void setLevelOfCoverage(Integer levelOfCoverage) {
         this.levelOfCoverage = levelOfCoverage;
     }
 }
