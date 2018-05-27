@@ -27,8 +27,8 @@ public class ExactAlgorithm extends SetCoverAlgorithm {
                 }
             }
 
-            if (result.coversUniverse(universe)) {
-                if (generated.getSets().size() < result.getSets().size()) {
+            if (generated.coversUniverse(universe)) {
+                if (generated.getSets().size() < result.getSets().size() || result.getSets().size() == 0) {
                     result = generated;
                 }
             }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class GreedyAlgorithm extends SetCoverAlgorithm {
 
-    protected GreedyAlgorithm(Universe universe, List<Set> sets) {
+    GreedyAlgorithm(Universe universe, List<Set> sets) {
         super(universe, sets);
     }
 
