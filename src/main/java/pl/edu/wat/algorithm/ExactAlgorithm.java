@@ -4,7 +4,7 @@ import pl.edu.wat.algorithm.model.Result;
 import pl.edu.wat.algorithm.model.Set;
 import pl.edu.wat.algorithm.model.Universe;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,21 +17,23 @@ public class ExactAlgorithm extends SetCoverAlgorithm {
     @Override
     public void solve() {
         int size = sets.size();
-        List<Result> resultList = new ArrayList<>();
+        Result result = new Result();
         for (int i = 0; i < (1 << size); i++) {
-            Result result = new Result();
+            Result generated = new Result();
 
             for (int j = 0; j < size; j++) {
                 if ((i & (1 << j)) > 0) {
-                    result.addSet(sets.get(j));
+                    generated.addSet(sets.get(j));
                 }
             }
 
             if (result.coversUniverse(universe)) {
-                resultList.add(result);
+                if (generated.getSets().size() < result.getSets().size()) {
+                    result = generated;
+                }
             }
         }
-        results = findBestResults(resultList);
+        results = Collections.singletonList(result);
     }
 
     private List<Result> findBestResults(List<Result> results) {
