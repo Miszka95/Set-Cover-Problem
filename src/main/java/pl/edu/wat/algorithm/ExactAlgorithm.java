@@ -18,18 +18,21 @@ public class ExactAlgorithm extends SetCoverAlgorithm {
     public void solve() {
         int size = sets.size();
         Result result = new Result();
+        Result generated;
         for (int i = 0; i < (1 << size); i++) {
-            Result generated = new Result();
+            generated = new Result();
 
             for (int j = 0; j < size; j++) {
                 if ((i & (1 << j)) > 0) {
                     generated.addSet(sets.get(j));
                 }
             }
-
+            count((long) size + 2);
             if (generated.coversUniverse(universe)) {
+                count();
                 if (generated.getSets().size() < result.getSets().size() || result.getSets().size() == 0) {
                     result = generated;
+                    count();
                 }
             }
         }

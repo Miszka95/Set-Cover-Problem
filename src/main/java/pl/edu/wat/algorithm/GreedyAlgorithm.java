@@ -26,6 +26,7 @@ public class GreedyAlgorithm extends SetCoverAlgorithm {
             Set mostEffectiveSet = findMostEffectiveSet(availableSets, result);
             result.addSet(mostEffectiveSet);
             availableSets.remove(mostEffectiveSet);
+            count((long) 3);
         } while (!result.coversUniverse(universe));
 
         results = Collections.singletonList(result);
@@ -36,6 +37,7 @@ public class GreedyAlgorithm extends SetCoverAlgorithm {
                 .flatMap(e -> e.getElements().stream())
                 .collect(Collectors.toList());
 
+        count((long) sets.size());
         return sets.stream()
                 .max(Comparator.comparingInt(s -> countNewElements(coveredElements, s.getElements())))
                 .orElseThrow(() -> new UniverseCoverageException(ERROR_MSG));

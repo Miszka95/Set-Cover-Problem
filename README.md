@@ -1,10 +1,14 @@
 # Set Cover Problem
 
 ## Aplikacja
-
-Aby uruchomić aplikację należy w głównym katalogu projektu wykonać polecenie
+Aby skorzystać z generatora danych losowych
 ```
-gradlew clean run
+gradlew clean run -Pdata=random
+```
+
+Aby skorzystać z pliku wejściowego (configuration.yml)
+```
+gradlew clean run -Pdata=file
 ```
 
 ## Konfiguracja
