@@ -6,7 +6,6 @@ import pl.edu.wat.algorithm.model.Universe;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ExactAlgorithm extends SetCoverAlgorithm {
 
@@ -37,16 +36,5 @@ public class ExactAlgorithm extends SetCoverAlgorithm {
             }
         }
         results = Collections.singletonList(result);
-    }
-
-    private List<Result> findBestResults(List<Result> results) {
-        int min = results.stream()
-                .mapToInt(e -> e.getSets().size())
-                .min()
-                .orElseThrow(() -> new UniverseCoverageException(ERROR_MSG));
-
-        return results.stream()
-                .filter(u -> u.getSets().size() == min)
-                .collect(Collectors.toList());
     }
 }

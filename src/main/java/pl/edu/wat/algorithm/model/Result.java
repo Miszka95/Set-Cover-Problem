@@ -31,7 +31,7 @@ public class Result {
     @Override
     public String toString() {
         List<String> setNames = sets.stream()
-                .map(s -> "Set " + s.getId())
+                .map(s -> "Set " + s.getId() + " " + s.getElements())
                 .collect(Collectors.toList());
         return String.join(", ", setNames);
     }
